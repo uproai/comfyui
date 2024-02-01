@@ -292,6 +292,36 @@ function provisioning_get_models() {
     done
 }
 
+# Function to download a file and rename it
+# $1 is the URL of the file to download
+# $2 is the directory where the file will be saved
+# $3 is the new filename of the downloaded file
+function provisioning_download_file() {
+    local url="$1"
+    local dir="$2"
+    local new_filename="$3"
+
+    # Ensures the directory exists
+    mkdir -p "$dir"
+
+    # Uses curl to download the file to the specified directory with output redirection
+    local temp_file="$(mktemp)"
+    echo "Downloading file from $url to $dir/$new_filename"
+    curl -sSL "$url" -o "$temp_file"
+
+    # Checks if the download was successful
+    if [[ $? -eq 0 ]]; then
+        # Move and rename the temporary file to the final destination with the new filename
+        mv "$temp_file" "$dir/$new_filename"
+        echo "Download complete: $dir/$new_filename"
+    else
+        echo "Error downloading the file from $url"
+        # Removes the temporary file if download failed
+        rm -f "$temp_file"
+    fi
+}
+
+
 function provisioning_print_header() {
     printf "\n##############################################\n#                                            #\n#          Provisioning container            #\n#                                            #\n#         This will take some time           #\n#                                            #\n# Your container will be ready on completion #\n#                                            #\n##############################################\n\n"
     if [[ $DISK_GB_ALLOCATED -lt $DISK_GB_REQUIRED ]]; then
