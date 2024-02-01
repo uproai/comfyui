@@ -125,8 +125,7 @@ LORA_MODELS=(
     "https://civitai.com/api/download/models/151356"
     #176698@198379
     "https://civitai.com/api/download/models/198379"
-
-
+    "https://civitai.com/api/download/models/87153"
 )
 
 VAE_MODELS=(
