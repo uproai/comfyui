@@ -15,6 +15,7 @@ storage_map["stable_diffusion/models/vae"]="/opt/ComfyUI/models/vae"
 storage_map["stable_diffusion/models/vae_approx"]="/opt/ComfyUI/models/upscale_models"
 storage_map["stable_diffusion/models/upscale_models"]="/opt/ComfyUI/models/upscale_models"
 storage_map["stable_diffusion/models/ipadapter"]="/opt/ComfyUI/models/ipadapter"
+storage_map["stable_diffusion/models/ipadapter/image_encoder"]="/opt/ComfyUI/models/clip_vision/ipadapter"
 storage_map["stable_diffusion/models/animatediff_models"]="/opt/ComfyUI/models/animatediff_models"
 storage_map["stable_diffusion/models/animatediff_motion_lora"]="/opt/ComfyUI/models/animatediff_motion_lora"
 

@@ -3,6 +3,8 @@
 # This file will be sourced in init.sh
 
 # https://botgenx.s3.amazonaws.com/fandom/a/prod/imgen/uproai.sh
+# copy resource between machines:
+# sudo rsync -arz -L -v --progress --rsh=ssh -e 'sudo ssh -i /root/.ssh/id_rsa -p <ssh_port> -o StrictHostKeyChecking=no' root@188.250.58.205:/workspace/ /workspace/
 
 NODES=(
     "https://github.com/ltdrdata/ComfyUI-Manager"
@@ -201,6 +203,11 @@ ANIMATEDIFF_LORAS=(
     "https://huggingface.co/guoyww/animatediff/resolve/main/v2_lora_ZoomOut.ckpt"
 )
 
+CLIP_VISION_MODELS=(
+    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/image_encoder/model.safetensors"
+    "https://huggingface.co/h94/IP-Adapter/resolve/main/models/image_encoder/pytorch_model.bin"
+)
+
 ### DO NOT EDIT BELOW HERE UNLESS YOU KNOW WHAT YOU ARE DOING ###
 
 function provisioning_start() {
@@ -236,6 +243,9 @@ function provisioning_start() {
     provisioning_get_models \
         "${WORKSPACE}/storage/stable_diffusion/models/animatediff_motion_lora" \
         "${ANIMATEDIFF_LORAS[@]}"
+    provisioning_get_models \
+        "${WORKSPACE}/storage/stable_diffusion/models/ipadapter/image_encoder" \
+        "${CLIP_VISION_MODELS[@]}"
     provisioning_print_end
 }
 
