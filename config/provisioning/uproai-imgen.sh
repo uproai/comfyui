@@ -45,7 +45,6 @@ NODES=(
     "https://github.com/kijai/ComfyUI-KJNodes"
     "https://github.com/melMass/comfy_mtb"
     "https://github.com/Jcd1230/rembg-comfyui-node"
-    "https://github.com/Shraknard/ComfyUI-Remover"
     "https://github.com/huchenlei/ComfyUI-layerdiffuse"
 )
 
@@ -115,6 +114,7 @@ LORA_MODELS=(
     #https://civitai.com/models/137169/pe-anime-background-landscapes-style
     "https://civitai.com/api/download/models/151356"
     #176698@198379
+    #Better Anime Backgrounds
     "https://civitai.com/api/download/models/198379"
     "https://civitai.com/api/download/models/87153"
 )
@@ -328,3 +328,20 @@ function provisioning_download() {
 }
 
 provisioning_start
+
+function link_model_files() {
+    mkdir -p /opt/ComfyUI/models/clip_vision/SD1.5/
+    #link SD1.5 clip_vision for IPAdapter
+    ln -s /opt/storage/stable_diffusion/models/ipadapter/image_encoder/pytorch_model.bin /opt/ComfyUI/models/clip_vision/SD1.5/pytorch_model.bin
+    ln -s /opt/storage/stable_diffusion/models/ipadapter/image_encoder/model.safetensors /opt/ComfyUI/models/clip_vision/sd15.safetensors
+    #nabimix ckpt name
+    ln -s /opt/storage/stable_diffusion/models/ckpt/nabimix_v2.safetensors /opt/ComfyUI/models/checkpoints/nabimix_V2.safetensors
+}
+
+function download_lora_with_invalid_name() {
+    wget -qnc --content-disposition --show-progress --directory-prefix /opt/ComfyUI/models/loras https://civitai.com/api/download/models/198379
+    wget -qnc --content-disposition --show-progress --directory-prefix /opt/ComfyUI/models/loras https://civitai.com/api/download/models/87153
+}
+
+link_model_files
+download_lora_with_invalid_name
