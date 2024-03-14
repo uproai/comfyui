@@ -50,14 +50,11 @@ NODES=(
     "https://github.com/kwaroran/abg-comfyui"
     "https://github.com/LEv145/images-grid-comfy-plugin"
     "https://github.com/cubiq/ComfyUI_essentials"
-    "https://github.com/thecooltechguy/ComfyUI-MagicAnimate"
-    "https://github.com/MrForExample/ComfyUI-AnimateAnyone-Evolved"
-    "https://github.com/chaojie/ComfyUI-Moore-AnimateAnyone"
     "https://github.com/kijai/ComfyUI-KJNodes"
     "https://github.com/melMass/comfy_mtb"
-    #"https://github.com/shadowcz007/comfyui-mixlab-nodes"
     "https://github.com/Jcd1230/rembg-comfyui-node"
     "https://github.com/Shraknard/ComfyUI-Remover"
+    "https://github.com/huchenlei/ComfyUI-layerdiffuse"
 )
 
 
