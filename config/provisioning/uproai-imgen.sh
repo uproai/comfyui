@@ -12,6 +12,7 @@ NODES=(
     "https://github.com/EllangoK/ComfyUI-post-processing-nodes"
     "https://github.com/RockOfFire/ComfyUI_Comfyroll_CustomNodes"
     "https://github.com/FizzleDorf/ComfyUI_FizzNodes"
+    "https://github.com/pythongosssss/ComfyUI-Custom-Scripts"
     "https://github.com/cubiq/ComfyUI_IPAdapter_plus"
     "https://github.com/ssitu/ComfyUI_UltimateSDUpscale"
     "https://github.com/lilly1987/ComfyUI_node_Lilly"
@@ -336,6 +337,8 @@ function link_model_files() {
     ln -s /opt/storage/stable_diffusion/models/ipadapter/image_encoder/model.safetensors /opt/ComfyUI/models/clip_vision/sd15.safetensors
     #nabimix ckpt name
     ln -s /opt/storage/stable_diffusion/models/ckpt/nabimix_v2.safetensors /opt/ComfyUI/models/checkpoints/nabimix_V2.safetensors
+    #4x-UltraSharp.pth
+    ln -s /opt/storage/stable_diffusion/models/upscale_models/4x-UltraSharp.pth /opt/ComfyUI/models/upscale_models/4x-UltraSharp.pth
 }
 
 function download_lora_with_invalid_name() {
