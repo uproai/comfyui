@@ -339,6 +339,7 @@ function link_model_files() {
     ln -s /opt/storage/stable_diffusion/models/ckpt/nabimix_v2.safetensors /opt/ComfyUI/models/checkpoints/nabimix_V2.safetensors
     #4x-UltraSharp.pth
     ln -s /opt/storage/stable_diffusion/models/upscale_models/4x-UltraSharp.pth /opt/ComfyUI/models/upscale_models/4x-UltraSharp.pth
+    ln -s /opt/storage/stable_diffusion/models/lora/power_csm.safetensors /opt/ComfyUI/models/lora/PowerV2.safetensors
 }
 
 function download_lora_with_invalid_name() {
