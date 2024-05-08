@@ -11,7 +11,6 @@ function preflight_main() {
 function preflight_serverless() {
   printf "Skipping ComfyUI updates in serverless mode\n"
   printf "%s" "${COMFYUI_FLAGS}" > /etc/comfyui_flags.conf
-
 }
 
 function preflight_copy_notebook() {
@@ -23,12 +22,15 @@ function preflight_copy_notebook() {
 }
 
 function preflight_update_comfyui() {
-    if [[ ${AUTO_UPDATE,,} != "false" ]]; then
+    if [[ ${AUTO_UPDATE,,} == "true" ]]; then
         /opt/ai-dock/bin/update-comfyui.sh
     else
-        printf "Skipping auto update (AUTO_UPDATE=false)"
+        printf "Skipping auto update (AUTO_UPDATE != true)"
     fi
 }
+
+# move this to base-image
+sudo chown user.ai-dock /var/log/timing_data
 
 if [[ ${SERVERLESS,,} != "true" ]]; then
     preflight_main "$@"

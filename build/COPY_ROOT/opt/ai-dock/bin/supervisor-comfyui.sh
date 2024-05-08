@@ -4,14 +4,18 @@ trap cleanup EXIT
 
 LISTEN_PORT=${COMFYUI_PORT_LOCAL:-18188}
 METRICS_PORT=${COMFYUI_METRICS_PORT:-28188}
-PROXY_SECURE=true
+SERVICE_URL="${COMFYUI_URL:-}"
+QUICKTUNNELS=true
 
 function cleanup() {
     kill $(jobs -p) > /dev/null 2>&1
     rm /run/http_ports/$PROXY_PORT > /dev/null 2>&1
+    fuser -k -SIGTERM ${LISTEN_PORT}/tcp > /dev/null 2>&1 &
+    wait -n
 }
 
 function start() {
+    source /opt/ai-dock/etc/environment.sh
     if [[ ! -v COMFYUI_PORT || -z $COMFYUI_PORT ]]; then
         COMFYUI_PORT=${COMFYUI_PORT_HOST:-8188}
     fi
@@ -25,6 +29,7 @@ function start() {
         --arg proxy_port "${PROXY_PORT}" \
         --arg proxy_secure "${PROXY_SECURE,,}" \
         --arg service_name "${SERVICE_NAME}" \
+        --arg service_url "${SERVICE_URL}" \
         '$ARGS.named'
     )"
     
@@ -41,7 +46,7 @@ function start() {
     if [[ -f /run/workspace_sync || -f /run/container_config ]]; then
         if [[ ${SERVERLESS,,} != "true" ]]; then
             printf "Waiting for workspace sync...\n"
-            kill $(lsof -t -i:$LISTEN_PORT) > /dev/null 2>&1 &
+            fuser -k -SIGKILL ${LISTEN_PORT}/tcp > /dev/null 2>&1 &
             wait -n
             /usr/bin/python3 /opt/ai-dock/fastapi/logviewer/main.py \
                 -p $LISTEN_PORT \
@@ -67,14 +72,16 @@ function start() {
     printf "%s started: %s\n" "${SERVICE_NAME}" "$(date +"%x %T.%3N")" >> /var/log/timing_data
     printf "Starting %s...\n" "${SERVICE_NAME}"
     
-    kill $(lsof -t -i:$LISTEN_PORT) > /dev/null 2>&1 &
+    fuser -k -SIGKILL ${LISTEN_PORT}/tcp > /dev/null 2>&1 &
     wait -n
 
     FLAGS_COMBINED="${PLATFORM_FLAGS} ${BASE_FLAGS} $(cat /etc/comfyui_flags.conf)"
     printf "Starting %s...\n" "${SERVICE_NAME}"
 
     cd /opt/ComfyUI && \
-    micromamba run -n comfyui -e LD_PRELOAD=libtcmalloc.so python main.py \
+    micromamba run -n comfyui \
+        -e LD_PRELOAD=libtcmalloc.so \
+        python main.py \
         ${FLAGS_COMBINED} --port ${LISTEN_PORT}
 }
 
