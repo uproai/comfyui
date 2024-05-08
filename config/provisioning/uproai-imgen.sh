@@ -351,6 +351,7 @@ function download_lora_with_invalid_name() {
     wget -qnc --content-disposition --show-progress --directory-prefix /opt/ComfyUI/models/loras https://civitai.com/api/download/models/113529
     wget -qnc --content-disposition --show-progress --directory-prefix /opt/ComfyUI/models/loras 'https://civitai.com/api/download/models/18119?type=Model&format=SafeTensor&size=full&fp=fp16'
     wget -qnc --content-disposition --show-progress --directory-prefix /opt/ComfyUI/models/loras https://huggingface.co/YoungMasterFromSect/Trauter_LoRAs/resolve/main/LoRA/Genshin-Impact/Raiden%20Shogun/raiden%20shogun_LoRA.safetensors
+    ln -s /opt/ComfyUI/models/loras/ShouyouHinataV2.safetensors '/opt/ComfyUI/models/loras/Shoyo Hinata.safetensors'
 }
 
 download_lora_with_invalid_name
