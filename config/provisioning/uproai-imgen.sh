@@ -47,6 +47,7 @@ NODES=(
     "https://github.com/Jcd1230/rembg-comfyui-node"
     "https://github.com/huchenlei/ComfyUI-layerdiffuse"
     "https://github.com/palant/extended-saveimage-comfyui"
+    "https://github.com/ntdviet/comfyui-ext"
 )
 
 
