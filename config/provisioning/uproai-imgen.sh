@@ -17,7 +17,6 @@ NODES=(
     "https://github.com/ssitu/ComfyUI_UltimateSDUpscale"
     "https://github.com/lilly1987/ComfyUI_node_Lilly"
     "https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes"
-    "https://github.com/laksjdjf/IPAdapter-ComfyUI"
     "https://github.com/civitai/comfy-nodes"
     "https://github.com/Fannovel16/comfyui_controlnet_aux"
     "https://github.com/Stability-AI/stability-ComfyUI-nodes"
@@ -344,7 +343,7 @@ function link_model_files() {
     ln -s /opt/storage/stable_diffusion/models/ckpt/nabimix_v2.safetensors /opt/ComfyUI/models/checkpoints/nabimix_V2.safetensors
     #4x-UltraSharp.pth
     ln -s /opt/storage/stable_diffusion/models/upscale_models/4x-UltraSharp.pth /opt/ComfyUI/models/upscale_models/4x-UltraSharp.pth
-    ln -s /opt/storage/stable_diffusion/models/lora/power_csm.safetensors /opt/ComfyUI/models/lora/PowerV2.safetensors
+    ln -s /opt/storage/stable_diffusion/models/loras/power_csm.safetensors /opt/ComfyUI/models/loras/PowerV2.safetensors
 }
 
 function download_lora_with_invalid_name() {
