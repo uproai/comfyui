@@ -79,7 +79,6 @@ LORA_MODELS=(
     "https://civitai.com/api/download/models/109019"
     "https://civitai.com/api/download/models/11231"
     "https://civitai.com/api/download/models/113529"
-    "https://civitai.com/api/download/models/113529"
     "https://civitai.com/api/download/models/118229"
     "https://civitai.com/api/download/models/121571"
     "https://civitai.com/api/download/models/123926"
@@ -343,13 +342,16 @@ function link_model_files() {
     ln -s /opt/storage/stable_diffusion/models/ckpt/nabimix_v2.safetensors /opt/ComfyUI/models/checkpoints/nabimix_V2.safetensors
     #4x-UltraSharp.pth
     ln -s /opt/storage/stable_diffusion/models/upscale_models/4x-UltraSharp.pth /opt/ComfyUI/models/upscale_models/4x-UltraSharp.pth
-    ln -s /opt/storage/stable_diffusion/models/loras/power_csm.safetensors /opt/ComfyUI/models/loras/PowerV2.safetensors
+    ln -s /opt/storage/stable_diffusion/models/lora/power_csm.safetensors /opt/ComfyUI/models/loras/PowerV2.safetensors
 }
 
 function download_lora_with_invalid_name() {
     wget -qnc --content-disposition --show-progress --directory-prefix /opt/ComfyUI/models/loras https://civitai.com/api/download/models/198379
     wget -qnc --content-disposition --show-progress --directory-prefix /opt/ComfyUI/models/loras https://civitai.com/api/download/models/87153
+    wget -qnc --content-disposition --show-progress --directory-prefix /opt/ComfyUI/models/loras https://civitai.com/api/download/models/113529
+    wget -qnc --content-disposition --show-progress --directory-prefix /opt/ComfyUI/models/loras 'https://civitai.com/api/download/models/18119?type=Model&format=SafeTensor&size=full&fp=fp16'
+    wget -qnc --content-disposition --show-progress --directory-prefix /opt/ComfyUI/models/loras https://huggingface.co/YoungMasterFromSect/Trauter_LoRAs/resolve/main/LoRA/Genshin-Impact/Raiden%20Shogun/raiden%20shogun_LoRA.safetensors
 }
 
-link_model_files
 download_lora_with_invalid_name
+link_model_files
