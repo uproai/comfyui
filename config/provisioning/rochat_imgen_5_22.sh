@@ -59,6 +59,7 @@ CHECKPOINT_MODELS=(
     "https://civitai.com/api/download/models/484768"
     "https://civitai.com/api/download/models/192804"
     # background SDXL
+    "https://civitai.com/api/download/models/457853"
     "https://civitai.com/api/download/models/516648"
     # base model
     "https://huggingface.co/stabilityai/stable-diffusion-2-1/resolve/main/v2-1_768-ema-pruned.ckpt"
@@ -114,6 +115,7 @@ IPADAPTER_MODELS=(
     "https://huggingface.co/h94/IP-Adapter/resolve/main/sdxl_models/ip-adapter-plus_sdxl_vit-h.safetensors"
     "https://huggingface.co/h94/IP-Adapter/resolve/main/sdxl_models/ip-adapter_sdxl.safetensors"
     "https://huggingface.co/h94/IP-Adapter/resolve/main/sdxl_models/ip-adapter_sdxl_vit-h.safetensors"
+
 )
 
 UPSCALE_MODELS=(
@@ -268,10 +270,9 @@ function provisioning_download() {
 provisioning_start
 
 function link_model_files() {
-    mkdir -p /opt/ComfyUI/models/clip_vision/SD1.5/
     #link SD1.5 clip_vision for IPAdapter
-    ln -s /opt/storage/stable_diffusion/models/ipadapter/image_encoder/pytorch_model.bin /opt/ComfyUI/models/clip_vision/SD1.5/pytorch_model.bin
-    ln -s /opt/storage/stable_diffusion/models/ipadapter/image_encoder/model.safetensors /opt/ComfyUI/models/clip_vision/sd15.safetensors
+    ln -s /opt/storage/stable_diffusion/models/ipadapter/image_encoder/pytorch_model.bin /opt/ComfyUI/models/ipadapter/image_encoder/pytorch_model.bin
+    ln -s /opt/storage/stable_diffusion/models/ipadapter/image_encoder/model.safetensors /opt/ComfyUI/models/ipadapter/image_encoder/model.safetensors
     #nabimix ckpt name
     ln -s /opt/storage/stable_diffusion/models/ckpt/nabimix_v2.safetensors /opt/ComfyUI/models/checkpoints/nabimix_V2.safetensors
     #4x-UltraSharp.pth
