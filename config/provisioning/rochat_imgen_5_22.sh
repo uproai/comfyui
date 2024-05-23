@@ -115,7 +115,6 @@ IPADAPTER_MODELS=(
     "https://huggingface.co/h94/IP-Adapter/resolve/main/sdxl_models/ip-adapter-plus_sdxl_vit-h.safetensors"
     "https://huggingface.co/h94/IP-Adapter/resolve/main/sdxl_models/ip-adapter_sdxl.safetensors"
     "https://huggingface.co/h94/IP-Adapter/resolve/main/sdxl_models/ip-adapter_sdxl_vit-h.safetensors"
-
 )
 
 UPSCALE_MODELS=(
@@ -270,14 +269,12 @@ function provisioning_download() {
 provisioning_start
 
 function link_model_files() {
+    mkdir -p /opt/ComfyUI/models/clip_vision/SD1.5/
     #link SD1.5 clip_vision for IPAdapter
-    ln -s /opt/storage/stable_diffusion/models/ipadapter/image_encoder/pytorch_model.bin /opt/ComfyUI/models/ipadapter/image_encoder/pytorch_model.bin
-    ln -s /opt/storage/stable_diffusion/models/ipadapter/image_encoder/model.safetensors /opt/ComfyUI/models/ipadapter/image_encoder/model.safetensors
-    #nabimix ckpt name
-    ln -s /opt/storage/stable_diffusion/models/ckpt/nabimix_v2.safetensors /opt/ComfyUI/models/checkpoints/nabimix_V2.safetensors
+    ln -s /opt/storage/stable_diffusion/models/ipadapter/image_encoder/pytorch_model.bin /opt/ComfyUI/models/clip_vision/SD1.5/pytorch_model.bin
+    ln -s /opt/storage/stable_diffusion/models/ipadapter/image_encoder/model.safetensors /opt/ComfyUI/models/clip_vision/sd15.safetensors
     #4x-UltraSharp.pth
     ln -s /opt/storage/stable_diffusion/models/upscale_models/4x-UltraSharp.pth /opt/ComfyUI/models/upscale_models/4x-UltraSharp.pth
-    ln -s /opt/storage/stable_diffusion/models/lora/power_csm.safetensors /opt/ComfyUI/models/loras/PowerV2.safetensors
 }
 
 function download_lora_with_invalid_name() {
